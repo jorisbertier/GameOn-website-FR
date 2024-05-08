@@ -11,7 +11,6 @@ function createMessageError(message) {
     errorMessage = document.createElement('span');
     errorMessage.classList.add('error')
     errorMessage.innerText = message
-    inputName.parentNode.appendChild(errorMessage)
 }
 
 function removeMessageError() {
@@ -24,22 +23,26 @@ function removeMessageError() {
 
 
 
-// Validate name & surname form
-function validateName(name ) {
+// Validate name
+function validateName(name) {
     if(name.value.trim().length < 2) {
         if(!errorMessage) {
             createMessageError(`Le prénom  doit comporter au moins 2 caractères`)
-            console.log('je ne devrais pas tre la')        }
+            inputName.parentNode.appendChild(errorMessage)
+        }
         return false;
     }
     removeMessageError()
     return true;
 }
-function validateSurname(name, fieldName) {
+
+// Validate surname
+function validateSurname(name) {
     if(name.value.trim().length < 2) {
         if(!errorMessage) {
-            createMessageError(`Le ${fieldName}  doit comporter au moins 2 caractères`)
-            console.log('je ne devrais pas tre la')        }
+            createMessageError(`Le nom doit comporter au moins 2 caractères`)
+            inputSurname.parentNode.appendChild(errorMessage)
+        }
         return false;
     }
     removeMessageError()
@@ -106,7 +109,7 @@ function Validate() {
     let checkbox2 = document.querySelector('#checkbox2').checked
 
     validateName(inputName)
-    // validateSurname(inputSurname)
+    validateSurname(inputSurname)
     validateEmail(inputEmail)
     validateQuantity(inputQuantity)
 
