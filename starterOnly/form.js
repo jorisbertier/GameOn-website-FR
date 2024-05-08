@@ -4,15 +4,48 @@ let inputName = document.querySelector('#first')
 let inputSurname = document.querySelector('#last')
 let inputEmail = document.querySelector('#email')
 let inputQuantity = document.querySelector('#quantity')
+let errorMessage = null
+
+
+function createMessageError(message) {
+    errorMessage = document.createElement('span');
+    errorMessage.classList.add('error')
+    errorMessage.innerText = message
+    inputName.parentNode.appendChild(errorMessage)
+}
+
+function removeMessageError() {
+    if(errorMessage) {
+        errorMessage.remove()
+        errorMessage = null
+        console.log('la')
+    }
+}
+
 
 
 // Validate name & surname form
-function validateName(name, fieldName) {
+function validateName(name ) {
     if(name.value.trim().length < 2) {
-        console.log(`Le ${fieldName}  doit comporter au moins 2 caractères`)
-        return false
+        if(!errorMessage) {
+            createMessageError(`Le prénom  doit comporter au moins 2 caractères`)
+            console.log('je ne devrais pas tre la')        }
+        return false;
     }
+    removeMessageError()
+    return true;
 }
+function validateSurname(name, fieldName) {
+    if(name.value.trim().length < 2) {
+        if(!errorMessage) {
+            createMessageError(`Le ${fieldName}  doit comporter au moins 2 caractères`)
+            console.log('je ne devrais pas tre la')        }
+        return false;
+    }
+    removeMessageError()
+    return true;
+}
+
 
 // Validate Email form
 function validateEmail(email) {
@@ -72,8 +105,8 @@ function Validate() {
     let checkbox1 = document.querySelector('#checkbox1').checked
     let checkbox2 = document.querySelector('#checkbox2').checked
 
-    validateName(inputName, "prénom")
-    validateName(inputSurname, "nom")
+    validateName(inputName)
+    // validateSurname(inputSurname)
     validateEmail(inputEmail)
     validateQuantity(inputQuantity)
 
@@ -86,7 +119,7 @@ function Validate() {
     validateCheckbox(checkbox1)
     validateCheckbox2(checkbox2)
 
-    if(validateName && validateEmail && validateQuantity && validateCheckbox) {
+    if(!validateName && !validateEmail && !validateQuantity && !validateCheckbox) {
         alert('formulaire envoyer')
     }
 }
