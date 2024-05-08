@@ -54,7 +54,8 @@ function validateSurname(name) {
 function validateEmail(email) {
     let regexEmail = new RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
     if(!regexEmail.test(email.value)) {
-        console.log("email non valide")
+        createMessageError(`L'adresse email n'est pas valide`)
+        inputEmail.parentNode.appendChild(errorMessage)
         return false
     }
 }
