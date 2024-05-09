@@ -162,9 +162,7 @@ function Validate() {
     let isCheckbox2Valid = validateCheckbox2(checkbox2);
 
     if(isNameValid && isSurnameValid && isEmailValid && isDateOfBirthValid && isQuantityValid && isSelectedOptionValid && isCheckbox1Valid) {
-        alert('formulaire envoyé');
-    } else {
-        console.log('formulaire non envoyé')
+        alert("Merci ! Votre réservation a été reçue.");
     }
 }
 
