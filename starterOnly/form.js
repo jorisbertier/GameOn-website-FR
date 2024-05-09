@@ -4,10 +4,14 @@ let inputName = document.querySelector('#first')
 let inputSurname = document.querySelector('#last')
 let inputEmail = document.querySelector('#email')
 let inputQuantity = document.querySelector('#quantity')
+let checkbox2 = document.querySelector('#checkbox2').checked
+
 let nameErrorMessage = null;
 let surnameErrorMessage = null;
 let emailErrorMessage = null;
 let quantityErrorMessage = null;
+let selectedErrorMessage = null;
+let checkbox1ErrorMessage = null;
 
 
 function createMessageError(message) {
@@ -83,27 +87,36 @@ function validateQuantity(quantity) {
 }
 
 //Validate selected option form
-function validateSelectedOption(selected) {
-    if (selected) {
-        console.log(selected);
-        return true;
+    function validateSelectedOption(selected) {
+        let inputSelectedOption = document.querySelector('input[name="location"]:checked')
+        if(selected) {
+            console.log(selected.value);
+            removeMessageError(selectedErrorMessage)
+            selectedErrorMessage = null
+            return true;
+        }
+        else {
+            if(!selectedErrorMessage) {
+                selectedErrorMessage = createMessageError(`Vous devez saisir une entrée`)
+                inputSelectedOption.parentNode.appendChild(selectedErrorMessage)
+            }
+            console.log("Aucune option sélectionnée");
+            return false;
+        }
     }
-    else {
-        console.log("Aucune option sélectionnée");
-        return false;
-    }
-}
 
 //Validate checkbox check form
 function validateCheckbox(checkbox) {
+    let checkbox1CreateSpan = document.querySelector('#checkbox1')
     if(checkbox) {
-        console.log("check 1 valid")
-        // removeMessageError()
+        removeMessageError(checkbox1ErrorMessage)
+        checkbox1ErrorMessage = null
         return true
     } else {
-        console.log("no check 1 invalid")
-        // createMessageError(`Vous devez vérifier que vous acceptez les termes et conditions`)
-        // checkbox1.parentNode.appendChild(errorMessage)
+        if(!checkbox1ErrorMessage) {
+            checkbox1ErrorMessage = createMessageError(`Vous devez vérifier que vous acceptez les termes et conditions.`)
+            checkbox1CreateSpan.parentNode.appendChild(checkbox1ErrorMessage)
+        }
         return false
     }
 }
@@ -123,21 +136,20 @@ function validateCheckbox2(checkbox) {
 function Validate() {
     let inputSelectedOption = document.querySelector('input[name="location"]:checked')
     let checkbox1 = document.querySelector('#checkbox1').checked
-    let checkbox2 = document.querySelector('#checkbox2').checked
 
-
+    // let inputSelectedOption = document.querySelector('input[name="location"]:checked')
     // validateName(inputName)
     // validateSurname(inputSurname)
     // validateEmail(inputEmail)
-    validateQuantity(inputQuantity)
-
+    // validateQuantity(inputQuantity)
+    // validateSelectedOption(inputSelectedOption)
     // if (inputSelectedOption) {
     //     console.log(inputSelectedOption.value);
     // } else {
     //     console.log("Aucune option sélectionnée");
     // }
 
-    // validateCheckbox(checkbox1)
+    validateCheckbox(checkbox1)
     // validateCheckbox2(checkbox2)
 
     // if(!validateName && !validateEmail && !validateQuantity && !validateCheckbox) {
