@@ -6,6 +6,7 @@ let inputEmail = document.querySelector('#email')
 let inputQuantity = document.querySelector('#quantity')
 let nameErrorMessage = null;
 let surnameErrorMessage = null;
+let emailErrorMessage = null;
 
 
 function createMessageError(message) {
@@ -54,11 +55,14 @@ function validateSurname(surname) {
 function validateEmail(email) {
     let regexEmail = new RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
     if(!regexEmail.test(email.value)) {
-            createMessageError(`L'adresse email n'est pas valide`)
-            inputEmail.parentNode.appendChild(errorMessage)
+        if(!emailErrorMessage) {
+            emailErrorMessage = createMessageError(`L'adresse email n'est pas valide`)
+            inputEmail.parentNode.appendChild(emailErrorMessage)
+        }
         return false
     }
-    removeMessageError()
+    removeMessageError(emailErrorMessage);
+    emailErrorMessage = null;
     return true;
 }
 
@@ -116,12 +120,12 @@ function validateCheckbox2(checkbox) {
 function Validate() {
     let inputSelectedOption = document.querySelector('input[name="location"]:checked')
     let checkbox1 = document.querySelector('#checkbox1').checked
-let checkbox2 = document.querySelector('#checkbox2').checked
+    let checkbox2 = document.querySelector('#checkbox2').checked
 
 
-    validateName(inputName)
-    validateSurname(inputSurname)
-    // validateEmail(inputEmail)
+    // validateName(inputName)
+    // validateSurname(inputSurname)
+    validateEmail(inputEmail)
     // validateQuantity(inputQuantity)
 
     // if (inputSelectedOption) {
