@@ -107,7 +107,7 @@ function validateQuantity(quantity) {
 
 //Validate checkbox check form
 function validateCheckbox(checkbox) {
-    let checkbox1CreateSpan = document.querySelector('#checkbox1')
+    let checkbox1ErrorSpan  = document.querySelector('#checkbox1')
     if(checkbox) {
         removeMessageError(checkbox1ErrorMessage)
         checkbox1ErrorMessage = null
@@ -115,7 +115,7 @@ function validateCheckbox(checkbox) {
     } else {
         if(!checkbox1ErrorMessage) {
             checkbox1ErrorMessage = createMessageError(`Vous devez vérifier que vous acceptez les termes et conditions.`)
-            checkbox1CreateSpan.parentNode.appendChild(checkbox1ErrorMessage)
+            checkbox1ErrorSpan .parentNode.appendChild(checkbox1ErrorMessage)
         }
         return false
     }
