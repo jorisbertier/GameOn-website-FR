@@ -88,7 +88,7 @@ function validateQuantity(quantity) {
 
 //Validate selected option form
     function validateSelectedOption(selected) {
-        let inputSelectedOption = document.querySelector('input[name="location"]:checked')
+        let inputSelectedErrorSpan = document.querySelector('input[name="location"]')
         if(selected) {
             console.log(selected.value);
             removeMessageError(selectedErrorMessage)
@@ -98,7 +98,7 @@ function validateQuantity(quantity) {
         else {
             if(!selectedErrorMessage) {
                 selectedErrorMessage = createMessageError(`Vous devez saisir une entrée`)
-                inputSelectedOption.parentNode.appendChild(selectedErrorMessage)
+                inputSelectedErrorSpan.parentNode.appendChild(selectedErrorMessage)
             }
             console.log("Aucune option sélectionnée");
             return false;
@@ -142,14 +142,14 @@ function Validate() {
     // validateSurname(inputSurname)
     // validateEmail(inputEmail)
     // validateQuantity(inputQuantity)
-    // validateSelectedOption(inputSelectedOption)
+    validateSelectedOption(inputSelectedOption)
     // if (inputSelectedOption) {
     //     console.log(inputSelectedOption.value);
     // } else {
     //     console.log("Aucune option sélectionnée");
     // }
 
-    validateCheckbox(checkbox1)
+    // validateCheckbox(checkbox1)
     // validateCheckbox2(checkbox2)
 
     // if(!validateName && !validateEmail && !validateQuantity && !validateCheckbox) {
