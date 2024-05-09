@@ -4,48 +4,48 @@ let inputName = document.querySelector('#first')
 let inputSurname = document.querySelector('#last')
 let inputEmail = document.querySelector('#email')
 let inputQuantity = document.querySelector('#quantity')
-let errorMessage = null
+let nameErrorMessage = null;
+let surnameErrorMessage = null;
 
 
 function createMessageError(message) {
-    errorMessage = document.createElement('span');
-    errorMessage.classList.add('error')
-    errorMessage.innerText = message
+    const errorMessage = document.createElement('span');
+    errorMessage.classList.add('error');
+    errorMessage.innerText = message;
+    return errorMessage;
 }
 
-function removeMessageError() {
-    if(errorMessage) {
-        errorMessage.remove()
-        errorMessage = null
-        console.log('la')
+function removeMessageError(errorMessage) {
+    if(errorMessage && errorMessage.parentNode) {
+        errorMessage.parentNode.removeChild(errorMessage);
     }
 }
-
-
 
 // Validate name
 function validateName(name) {
     if(name.value.trim().length < 2) {
-        if(!errorMessage) {
-            createMessageError(`Le prénom  doit comporter au moins 2 caractères`)
-            inputName.parentNode.appendChild(errorMessage)
+        if(!nameErrorMessage) {
+            nameErrorMessage = createMessageError(`Le prénom doit comporter au moins 2 caractères`);
+            inputName.parentNode.appendChild(nameErrorMessage);
         }
         return false;
     }
-    removeMessageError()
+    removeMessageError(nameErrorMessage);
+    nameErrorMessage = null;
     return true;
 }
 
 // Validate surname
-function validateSurname(name) {
-    if(name.value.trim().length < 2) {
-        if(!errorMessage) {
-            createMessageError(`Le nom doit comporter au moins 2 caractères`)
-            inputSurname.parentNode.appendChild(errorMessage)
+function validateSurname(surname) {
+    if(surname.value.trim().length < 2) {
+        if(!surnameErrorMessage) {
+            surnameErrorMessage = createMessageError(`Le nom doit comporter au moins 2 caractères`);
+            inputSurname.parentNode.appendChild(surnameErrorMessage);
         }
         return false;
     }
-    removeMessageError()
+    removeMessageError(surnameErrorMessage);
+    surnameErrorMessage = null;
     return true;
 }
 
@@ -54,30 +54,36 @@ function validateSurname(name) {
 function validateEmail(email) {
     let regexEmail = new RegExp('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
     if(!regexEmail.test(email.value)) {
-        createMessageError(`L'adresse email n'est pas valide`)
-        inputEmail.parentNode.appendChild(errorMessage)
+            createMessageError(`L'adresse email n'est pas valide`)
+            inputEmail.parentNode.appendChild(errorMessage)
         return false
     }
+    removeMessageError()
+    return true;
 }
 
 //Validate quantity form
 function validateQuantity(quantity) {
     let regexNumber = /^\d+$/;
     if(!regexNumber.test(quantity.value)) {
-        console.log('Uniquement nombre')
-        return false
+        console.log('nombre non saisie')
+        createMessageError(`Vous devez saisir un nombre`)
+        inputQuantity.parentNode.appendChild(errorMessage)
+    return false
     }
+    removeMessageError()
+    return true
 }
 
 //Validate selected option form
 function validateSelectedOption(selected) {
     if (selected) {
         console.log(selected);
-        return;
+        return true;
     }
     else {
         console.log("Aucune option sélectionnée");
-        return;
+        return false;
     }
 }
 
@@ -85,9 +91,12 @@ function validateSelectedOption(selected) {
 function validateCheckbox(checkbox) {
     if(checkbox) {
         console.log("check 1 valid")
-        return
+        // removeMessageError()
+        return true
     } else {
         console.log("no check 1 invalid")
+        // createMessageError(`Vous devez vérifier que vous acceptez les termes et conditions`)
+        // checkbox1.parentNode.appendChild(errorMessage)
         return false
     }
 }
@@ -107,25 +116,26 @@ function validateCheckbox2(checkbox) {
 function Validate() {
     let inputSelectedOption = document.querySelector('input[name="location"]:checked')
     let checkbox1 = document.querySelector('#checkbox1').checked
-    let checkbox2 = document.querySelector('#checkbox2').checked
+let checkbox2 = document.querySelector('#checkbox2').checked
+
 
     validateName(inputName)
     validateSurname(inputSurname)
-    validateEmail(inputEmail)
-    validateQuantity(inputQuantity)
+    // validateEmail(inputEmail)
+    // validateQuantity(inputQuantity)
 
-    if (inputSelectedOption) {
-        console.log(inputSelectedOption.value);
-    } else {
-        console.log("Aucune option sélectionnée");
-    }
+    // if (inputSelectedOption) {
+    //     console.log(inputSelectedOption.value);
+    // } else {
+    //     console.log("Aucune option sélectionnée");
+    // }
 
-    validateCheckbox(checkbox1)
-    validateCheckbox2(checkbox2)
+    // validateCheckbox(checkbox1)
+    // validateCheckbox2(checkbox2)
 
-    if(!validateName && !validateEmail && !validateQuantity && !validateCheckbox) {
-        alert('formulaire envoyer')
-    }
+    // if(!validateName && !validateEmail && !validateQuantity && !validateCheckbox) {
+    //     alert('formulaire envoyer')
+    // }
 }
 
 //Ecouter event form submit
