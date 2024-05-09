@@ -3,8 +3,8 @@ let form = document.querySelector('form')
 let inputName = document.querySelector('#first')
 let inputSurname = document.querySelector('#last')
 let inputEmail = document.querySelector('#email')
+let inputBirth = document.querySelector("#birthdate")
 let inputQuantity = document.querySelector('#quantity')
-let checkbox2 = document.querySelector('#checkbox2').checked
 
 let nameErrorMessage = null;
 let surnameErrorMessage = null;
@@ -12,6 +12,7 @@ let emailErrorMessage = null;
 let quantityErrorMessage = null;
 let selectedErrorMessage = null;
 let checkbox1ErrorMessage = null;
+let birthErrorMessage = null;
 
 
 function createMessageError(message) {
@@ -69,6 +70,20 @@ function validateEmail(email) {
     removeMessageError(emailErrorMessage);
     emailErrorMessage = null;
     return true;
+}
+
+function validateDateOfBirth(birth) {
+    if(birth.value !== '') {
+        removeMessageError(birthErrorMessage)
+        birthErrorMessage = null
+        return true
+    } else {
+        if(!birthErrorMessage) {
+            birthErrorMessage = createMessageError(`Vous devez entrer votre date de naissance.`)
+            inputBirth.parentNode.appendChild(birthErrorMessage)
+        }
+        return false
+    }
 }
 
 //Validate quantity form
@@ -136,22 +151,22 @@ function validateCheckbox2(checkbox) {
 function Validate() {
     let inputSelectedOption = document.querySelector('input[name="location"]:checked')
     let checkbox1 = document.querySelector('#checkbox1').checked
+    let checkbox2 = document.querySelector('#checkbox2').checked
+    
 
-    // let inputSelectedOption = document.querySelector('input[name="location"]:checked')
     // validateName(inputName)
     // validateSurname(inputSurname)
     // validateEmail(inputEmail)
     // validateQuantity(inputQuantity)
-    validateSelectedOption(inputSelectedOption)
-    // if (inputSelectedOption) {
-    //     console.log(inputSelectedOption.value);
-    // } else {
-    //     console.log("Aucune option sélectionnée");
-    // }
-
+    // validateSelectedOption(inputSelectedOption)
     // validateCheckbox(checkbox1)
     // validateCheckbox2(checkbox2)
-
+    validateDateOfBirth(inputBirth)
+    // if(inputBirth.value !== '') {
+    //     console.log(inputBirth.value)
+    // } else {
+    //     console.log("aucune date selectionne")
+    // }
     // if(!validateName && !validateEmail && !validateQuantity && !validateCheckbox) {
     //     alert('formulaire envoyer')
     // }
