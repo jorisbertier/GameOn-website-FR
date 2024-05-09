@@ -115,7 +115,6 @@ function validateQuantity(quantity) {
                 selectedErrorMessage = createMessageError(`Vous devez saisir une entrée`)
                 inputSelectedErrorSpan.parentNode.appendChild(selectedErrorMessage)
             }
-            console.log("Aucune option sélectionnée");
             return false;
         }
     }
@@ -153,23 +152,20 @@ function Validate() {
     let checkbox1 = document.querySelector('#checkbox1').checked
     let checkbox2 = document.querySelector('#checkbox2').checked
     
+    let isNameValid = validateName(inputName);
+    let isSurnameValid = validateSurname(inputSurname);
+    let isEmailValid = validateEmail(inputEmail);
+    let isDateOfBirthValid = validateDateOfBirth(inputBirth);
+    let isQuantityValid = validateQuantity(inputQuantity);
+    let isSelectedOptionValid = validateSelectedOption(inputSelectedOption);
+    let isCheckbox1Valid = validateCheckbox(checkbox1);
+    let isCheckbox2Valid = validateCheckbox2(checkbox2);
 
-    // validateName(inputName)
-    // validateSurname(inputSurname)
-    // validateEmail(inputEmail)
-    // validateQuantity(inputQuantity)
-    // validateSelectedOption(inputSelectedOption)
-    // validateCheckbox(checkbox1)
-    // validateCheckbox2(checkbox2)
-    validateDateOfBirth(inputBirth)
-    // if(inputBirth.value !== '') {
-    //     console.log(inputBirth.value)
-    // } else {
-    //     console.log("aucune date selectionne")
-    // }
-    // if(!validateName && !validateEmail && !validateQuantity && !validateCheckbox) {
-    //     alert('formulaire envoyer')
-    // }
+    if(isNameValid && isSurnameValid && isEmailValid && isDateOfBirthValid && isQuantityValid && isSelectedOptionValid && isCheckbox1Valid) {
+        alert('formulaire envoyé');
+    } else {
+        console.log('formulaire non envoyé')
+    }
 }
 
 //Ecouter event form submit
