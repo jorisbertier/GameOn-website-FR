@@ -7,6 +7,7 @@ let inputQuantity = document.querySelector('#quantity')
 let nameErrorMessage = null;
 let surnameErrorMessage = null;
 let emailErrorMessage = null;
+let quantityErrorMessage = null;
 
 
 function createMessageError(message) {
@@ -70,12 +71,14 @@ function validateEmail(email) {
 function validateQuantity(quantity) {
     let regexNumber = /^\d+$/;
     if(!regexNumber.test(quantity.value)) {
-        console.log('nombre non saisie')
-        createMessageError(`Vous devez saisir un nombre`)
-        inputQuantity.parentNode.appendChild(errorMessage)
+        if(!quantityErrorMessage) {
+            quantityErrorMessage = createMessageError(`Vous devez saisir un nombre`)
+            inputQuantity.parentNode.appendChild(quantityErrorMessage)
+        }
     return false
     }
-    removeMessageError()
+    removeMessageError(quantityErrorMessage)
+    quantityErrorMessage = null
     return true
 }
 
@@ -125,8 +128,8 @@ function Validate() {
 
     // validateName(inputName)
     // validateSurname(inputSurname)
-    validateEmail(inputEmail)
-    // validateQuantity(inputQuantity)
+    // validateEmail(inputEmail)
+    validateQuantity(inputQuantity)
 
     // if (inputSelectedOption) {
     //     console.log(inputSelectedOption.value);
