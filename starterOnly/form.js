@@ -17,6 +17,7 @@ let quantityErrorMessage = null;
 let selectedErrorMessage = null;
 let checkbox1ErrorMessage = null;
 let birthErrorMessage = null;
+let birthErrorMessageDate = null;
 
 
 function createMessageError(message) {
@@ -86,6 +87,21 @@ function validateDateOfBirth(birth) {
     if(birth.value !== '') {
         removeMessageError(birthErrorMessage)
         birthErrorMessage = null
+        let birthDate = new Date(birth.value).getTime();
+        let currentDate = new Date().getTime()
+        let ageMiliseconde = 18 * 365.25 * 24 * 60 * 60 * 1000;
+        let ageDifference = currentDate - birthDate
+
+        if(ageDifference < ageMiliseconde) {
+            if(!birthErrorMessageDate) {
+                birthErrorMessageDate = createMessageError(`Age minimun est de 18 ans`)
+                inputBirth.parentNode.appendChild(birthErrorMessageDate)
+            }
+            return false
+        } else {
+            removeMessageError(birthErrorMessageDate)
+            birthErrorMessageDate = null
+        }
         return true
     } else {
         if(!birthErrorMessage) {
@@ -172,7 +188,7 @@ function Validate() {
     // let isNameValid = validateName(inputName);
     // let isSurnameValid = validateSurname(inputSurname);
     // let isEmailValid = validateEmail(inputEmail);
-    // let isDateOfBirthValid = validateDateOfBirth(inputBirth);
+    let isDateOfBirthValid = validateDateOfBirth(inputBirth);
     // let isQuantityValid = validateQuantity(inputQuantity);
     // let isSelectedOptionValid = validateSelectedOption(inputSelectedOption);
     // let isCheckbox1Valid = validateCheckbox(checkbox1);
@@ -180,14 +196,18 @@ function Validate() {
 
     // if(isNameValid && isSurnameValid && isEmailValid && isDateOfBirthValid && isQuantityValid && isSelectedOptionValid && isCheckbox1Valid) {
         // alert("Merci ! Votre réservation a été reçue.");
-        form.innerHTML = "Merci pour votre inscription"
-        modal.classList.add('modal-validate');
-        let button = document.createElement('button')
-        button.innerText = "Fermer"
-        button.classList.add('btn-submit')
-        button.classList.add('margin')
-        button.classList.add('closeBtn')
-        form.appendChild(button)
+        // form.innerHTML = "Merci pour votre inscription"
+        // modal.classList.add('modal-validate');
+        // let button = document.createElement('button')
+        // button.innerText = "Fermer"
+        // button.classList.add('btn-submit')
+        // button.classList.add('margin')
+        // button.classList.add('closeBtn')
+        // form.appendChild(button)
+
+        if(isDateOfBirthValid) {
+            alert("Merci ! Votre réservation a été reçue.");
+        }
 }
 
 //Ecouter event form submit
