@@ -34,9 +34,11 @@ function validateName(name) {
         if(!nameErrorMessage) {
             nameErrorMessage = createMessageError(`Le prénom doit comporter au moins 2 caractères`);
             inputName.parentNode.appendChild(nameErrorMessage);
+            inputName.classList.add("borderError")
         }
         return false;
     }
+    inputName.classList.remove("borderError")
     removeMessageError(nameErrorMessage);
     nameErrorMessage = null;
     return true;
