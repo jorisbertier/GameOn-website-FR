@@ -188,6 +188,12 @@ main {
   margin: 15px auto;
 }
 
+.modal-validate {
+  padding: 150px 8%;
+  margin: 15px auto;
+  text-align: center;
+}
+
 label {
   font-family: var(--font-default);
   font-size: 17px;
@@ -486,6 +492,10 @@ footer {
 
 .borderError {
   border: 2px solid red;
+}
+
+.margin {
+  margin-top: 100px;
 }
 @media screen and (max-width: 800px) {
   .hero-section {

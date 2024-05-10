@@ -1,5 +1,9 @@
 // DOM elements
 let form = document.querySelector('form')
+let modal = document.querySelector('.modal-body')
+let btnClose = document.querySelector('.btn-close')
+
+
 let inputName = document.querySelector('#first')
 let inputSurname = document.querySelector('#last')
 let inputEmail = document.querySelector('#email')
@@ -50,9 +54,11 @@ function validateSurname(surname) {
         if(!surnameErrorMessage) {
             surnameErrorMessage = createMessageError(`Le nom doit comporter au moins 2 caractères`);
             inputSurname.parentNode.appendChild(surnameErrorMessage);
+            inputSurname.classList.add("borderError")
         }
         return false;
     }
+    inputSurname.classList.remove("borderError")
     removeMessageError(surnameErrorMessage);
     surnameErrorMessage = null;
     return true;
@@ -67,8 +73,10 @@ function validateEmail(email) {
             emailErrorMessage = createMessageError(`L'adresse email n'est pas valide`)
             inputEmail.parentNode.appendChild(emailErrorMessage)
         }
+        inputEmail.classList.add("borderError")
         return false
     }
+    inputEmail.classList.remove("borderError")
     removeMessageError(emailErrorMessage);
     emailErrorMessage = null;
     return true;
@@ -161,18 +169,25 @@ function Validate() {
     let checkbox1 = document.querySelector('#checkbox1').checked
     let checkbox2 = document.querySelector('#checkbox2').checked
     
-    let isNameValid = validateName(inputName);
-    let isSurnameValid = validateSurname(inputSurname);
-    let isEmailValid = validateEmail(inputEmail);
-    let isDateOfBirthValid = validateDateOfBirth(inputBirth);
-    let isQuantityValid = validateQuantity(inputQuantity);
-    let isSelectedOptionValid = validateSelectedOption(inputSelectedOption);
-    let isCheckbox1Valid = validateCheckbox(checkbox1);
-    let isCheckbox2Valid = validateCheckbox2(checkbox2);
+    // let isNameValid = validateName(inputName);
+    // let isSurnameValid = validateSurname(inputSurname);
+    // let isEmailValid = validateEmail(inputEmail);
+    // let isDateOfBirthValid = validateDateOfBirth(inputBirth);
+    // let isQuantityValid = validateQuantity(inputQuantity);
+    // let isSelectedOptionValid = validateSelectedOption(inputSelectedOption);
+    // let isCheckbox1Valid = validateCheckbox(checkbox1);
+    // let isCheckbox2Valid = validateCheckbox2(checkbox2);
 
-    if(isNameValid && isSurnameValid && isEmailValid && isDateOfBirthValid && isQuantityValid && isSelectedOptionValid && isCheckbox1Valid) {
-        alert("Merci ! Votre réservation a été reçue.");
-    }
+    // if(isNameValid && isSurnameValid && isEmailValid && isDateOfBirthValid && isQuantityValid && isSelectedOptionValid && isCheckbox1Valid) {
+        // alert("Merci ! Votre réservation a été reçue.");
+        form.innerHTML = "Merci pour votre inscription"
+        modal.classList.add('modal-validate');
+        let button = document.createElement('button')
+        button.innerText = "Fermer"
+        button.classList.add('btn-submit')
+        button.classList.add('margin')
+        button.classList.add('closeBtn')
+        form.appendChild(button)
 }
 
 //Ecouter event form submit
