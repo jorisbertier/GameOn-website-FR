@@ -96,6 +96,13 @@ function validateQuantity(quantity) {
         }
     return false
     }
+    if(quantity.value < 0 || quantity.value > 99) {
+        if(!quantityErrorMessage) {
+            quantityErrorMessage = createMessageError(`Vous devez saisir un nombre entre 0 et 99`)
+            inputQuantity.parentNode.appendChild(quantityErrorMessage)
+        }
+    return false
+    }
     removeMessageError(quantityErrorMessage)
     quantityErrorMessage = null
     return true
