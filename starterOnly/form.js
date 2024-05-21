@@ -215,6 +215,7 @@
 //     event.preventDefault()
 //     Validate()
 // })
+let modal = document.querySelector('.modal-body')
 let checkbox1ErrorMessage = null;
 
 function validateCheckbox(checkbox) {
@@ -225,8 +226,7 @@ function validateCheckbox(checkbox) {
         if (existingErrorMessage) {
             existingErrorMessage.parentNode.removeChild(existingErrorMessage);
         }
-        console.log("check 2 valid")
-        return
+        return true
     } else {
         if(!checkbox1ErrorMessage) {
             const errorMessage = document.createElement('span');
@@ -234,9 +234,8 @@ function validateCheckbox(checkbox) {
             errorMessage.innerText = `Vous devez vérifier que vous acceptez les termes et conditions.`;
             checkbox1ErrorSpan.parentNode.appendChild(errorMessage)
             checkbox1ErrorMessage = errorMessage;
-            console.log("no check 2 invalid")
         }
-        return
+        return false
     }
 }
 
@@ -257,15 +256,21 @@ document.querySelector('.btn-submit').addEventListener('click', (event)=> {
     let isCheckboxValid = validateCheckbox(checkbox);
 
     if(valid && isCheckboxValid) {
-        alert('tout les champs sont valides')
         console.log('message envoye')
-        // form.innerHTML = "Merci pour votre inscription"
-        // modal.classList.add('modal-validate');
-        // let button = document.createElement('button')
-        // button.innerText = "Fermer"
-        // button.classList.add('btn-submit')
-        // button.classList.add('margin')
-        // button.classList.add('closeBtn')
-        // form.appendChild(button)
+        form.innerHTML = "Merci pour votre inscription !"
+        modal.classList.add('modal-validate');
+        let button = document.createElement('button')
+        button.innerText = "Fermer"
+        button.classList.add('btn-submit')
+        button.classList.add('margin')
+        button.classList.add('closeBtn')
+        form.appendChild(button)
+
+        button.addEventListener('click', (event)=> {
+            event.preventDefault()
+            modalCloseForm();
+        })
     }
+
+
 })
