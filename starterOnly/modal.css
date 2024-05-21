@@ -68,39 +68,6 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
-
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -498,6 +465,11 @@ footer {
 .margin {
   margin-top: 100px;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
+
 @media screen and (max-width: 1140px) {
   .topnav {
     display: flex;
@@ -512,11 +484,28 @@ footer {
     height: 30px;
     width: 180px;
   }
+
+  .menu-burger {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-navbar {
+    backdrop-filter: blur(10px);
+  }
 }
 
 @media screen and (max-width: 900px) {
   .topnav a {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
@@ -558,6 +547,53 @@ footer {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .topnav {
+    padding-top: 20px;
+  }
+  .topnav a {
+    display: none;
+    font-size: 24px;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .main-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+
+
+ @media screen and (max-width: 540px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+} 
 
 
 

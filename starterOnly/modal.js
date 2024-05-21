@@ -1,11 +1,30 @@
+let menuburger = document.querySelector('.main-navbar')
+
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
+    menuburger.classList.add('menu-burger')
+    document.body.classList.add('no-scroll');
   } else {
     x.className = "topnav";
+    menuburger.classList.remove('menu-burger')
+    document.body.classList.remove('no-scroll'); 
   }
 }
+
+function closeMenu() {
+  var x = document.getElementById("myTopnav");
+  x.className = "topnav";
+  menuburger.classList.remove('menu-burger');
+  document.body.classList.remove('no-scroll');
+}
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1140) {
+    closeMenu();
+  }
+});
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
