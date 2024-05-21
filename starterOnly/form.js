@@ -271,6 +271,4 @@ document.querySelector('.btn-submit').addEventListener('click', (event)=> {
             modalCloseForm();
         })
     }
-
-
 })
