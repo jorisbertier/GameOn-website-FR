@@ -206,6 +206,10 @@ input {
   border: 0.8px solid #ccc;
   outline: none;
 }
+/* input:invalid {
+  border-color: red;
+} */
+
 .text-control {
   margin: 0;
   padding: 8px;
