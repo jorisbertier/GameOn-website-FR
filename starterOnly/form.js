@@ -135,22 +135,22 @@ function validateQuantity(quantity) {
 }
 
 //Validate selected option form
-    function validateSelectedOption(selected) {
-        let inputSelectedErrorSpan = document.querySelector('input[name="location"]')
-        if(selected) {
-            console.log(selected.value);
-            removeMessageError(selectedErrorMessage)
-            selectedErrorMessage = null
-            return true;
-        }
-        else {
-            if(!selectedErrorMessage) {
-                selectedErrorMessage = createMessageError(`Vous devez saisir une entrée`)
-                inputSelectedErrorSpan.parentNode.appendChild(selectedErrorMessage)
-            }
-            return false;
-        }
+function validateSelectedOption(selected) {
+    let inputSelectedErrorSpan = document.querySelector('input[name="location"]')
+    if(selected) {
+        console.log(selected.value);
+        removeMessageError(selectedErrorMessage)
+        selectedErrorMessage = null
+        return true;
     }
+    else {
+        if(!selectedErrorMessage) {
+            selectedErrorMessage = createMessageError(`Vous devez saisir une entrée`)
+            inputSelectedErrorSpan.parentNode.appendChild(selectedErrorMessage)
+        }
+        return false;
+    }
+}
 
 //Validate checkbox check form
 function validateCheckbox(checkbox) {
@@ -185,29 +185,29 @@ function Validate() {
     let checkbox1 = document.querySelector('#checkbox1').checked
     let checkbox2 = document.querySelector('#checkbox2').checked
     
-    // let isNameValid = validateName(inputName);
-    // let isSurnameValid = validateSurname(inputSurname);
-    // let isEmailValid = validateEmail(inputEmail);
+    let isNameValid = validateName(inputName);
+    let isSurnameValid = validateSurname(inputSurname);
+    let isEmailValid = validateEmail(inputEmail);
     let isDateOfBirthValid = validateDateOfBirth(inputBirth);
-    // let isQuantityValid = validateQuantity(inputQuantity);
-    // let isSelectedOptionValid = validateSelectedOption(inputSelectedOption);
-    // let isCheckbox1Valid = validateCheckbox(checkbox1);
-    // let isCheckbox2Valid = validateCheckbox2(checkbox2);
+    let isQuantityValid = validateQuantity(inputQuantity);
+    let isSelectedOptionValid = validateSelectedOption(inputSelectedOption);
+    let isCheckbox1Valid = validateCheckbox(checkbox1);
+    let isCheckbox2Valid = validateCheckbox2(checkbox2);
 
-    // if(isNameValid && isSurnameValid && isEmailValid && isDateOfBirthValid && isQuantityValid && isSelectedOptionValid && isCheckbox1Valid) {
-        // alert("Merci ! Votre réservation a été reçue.");
-        // form.innerHTML = "Merci pour votre inscription"
-        // modal.classList.add('modal-validate');
-        // let button = document.createElement('button')
-        // button.innerText = "Fermer"
-        // button.classList.add('btn-submit')
-        // button.classList.add('margin')
-        // button.classList.add('closeBtn')
-        // form.appendChild(button)
-
-        if(isDateOfBirthValid) {
-            alert("Merci ! Votre réservation a été reçue.");
-        }
+    if(isNameValid && isSurnameValid && isEmailValid && isDateOfBirthValid && isQuantityValid && isSelectedOptionValid && isCheckbox1Valid) {
+        alert("Merci ! Votre réservation a été reçue.");
+        form.innerHTML = "Merci pour votre inscription"
+        modal.classList.add('modal-validate');
+        let button = document.createElement('button')
+        button.innerText = "Fermer"
+        button.classList.add('btn-submit')
+        button.classList.add('margin')
+        button.classList.add('closeBtn')
+        form.appendChild(button)
+    }
+        // if(isDateOfBirthValid) {
+        //     alert("Merci ! Votre réservation a été reçue.");
+        // }
 }
 
 //Ecouter event form submit
