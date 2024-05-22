@@ -50,7 +50,7 @@ img {
   text-decoration: none;
   font-size: 20px;
   font-family: Roboto, sans-serif;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
   border-radius: 15px;
 }
 
@@ -94,6 +94,7 @@ main {
   padding: 0.75rem 2.5rem;
   border-radius: 1rem;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
 .modal-btn:hover {
