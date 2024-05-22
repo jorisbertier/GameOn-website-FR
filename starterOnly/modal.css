@@ -600,6 +600,15 @@ footer {
     float: right;
     display: block;
   }
+  label {
+    font-size: 15px;
+  }
+  .content {
+    width: 90%;
+  }
+  .text-control {
+    height: 40px;
+  }
 } 
 
 

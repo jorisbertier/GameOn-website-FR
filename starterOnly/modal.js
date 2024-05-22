@@ -37,11 +37,13 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 function launchModal() {
   modalbg.style.display = "block";
+  document.body.classList.add('no-scroll');
 }
 // close modal form & event
 
 function modalCloseForm(){
   modalbg.style.display = "none";
+  document.body.classList.remove('no-scroll');
 }
 modalClose.addEventListener('click', ()=> {
   modalCloseForm()
