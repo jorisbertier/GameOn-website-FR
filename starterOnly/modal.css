@@ -438,6 +438,7 @@ input[data-error]::after {
   height: 100%;
   display: block;
   padding: 0;
+  object-fit: cover;
 }
 .copyrights {
   color: #fe142f;
@@ -504,7 +505,11 @@ footer {
     backdrop-filter: blur(10px);
   }
 }
-
+@media screen and (max-width: 963px) {
+  .hero-headline {
+    font-size: 4rem;
+  }
+}
 @media screen and (max-width: 900px) {
   .topnav a {
     font-size: 12px;
