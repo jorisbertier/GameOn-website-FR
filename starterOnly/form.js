@@ -247,13 +247,13 @@ document.querySelector('.btn-submit').addEventListener('click', (event)=> {
 
     for(let input of form.querySelectorAll('input[data-validation], textarea[data-validation], select[data-validation]')) {
         let span = input.nextElementSibling;
-        
-        console.log(span)
         if (!input.checkValidity()) {
             valid = false;
+            input.classList.add('inputError')
             span.textContent = input.getAttribute('data-error-message');
             span.classList.add('error');
         } else {
+            input.classList.remove('inputError')
             span.textContent = "";
         }
     }

@@ -21,7 +21,7 @@ function closeMenu() {
 }
 
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 1140) {
+  if (window.innerWidth > 768) {
     closeMenu();
   }
 });

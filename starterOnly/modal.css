@@ -177,6 +177,10 @@ input {
   outline: none;
 }
 
+.inputError {
+  border: 1px solid red;
+}
+
 .text-control {
   margin: 0;
   padding: 8px;
@@ -486,7 +490,7 @@ footer {
   }
   .header-logo img {
     height: 30px;
-    width: 180px;
+    width: 170px;
   }
 
   .menu-burger {
