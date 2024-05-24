@@ -245,11 +245,16 @@ document.querySelector('.btn-submit').addEventListener('click', (event)=> {
     const form = document.getElementById('form');
     let checkbox = document.querySelector('#checkbox1').checked
 
-    for(let input of form.querySelectorAll('input, textarea, select')) {
+    for(let input of form.querySelectorAll('input[data-validation], textarea[data-validation], select[data-validation]')) {
+        let span = input.nextElementSibling;
+        
+        console.log(span)
         if (!input.checkValidity()) {
             valid = false;
-            input.reportValidity();
-            break;
+            span.textContent = input.getAttribute('data-error-message');
+            span.classList.add('error');
+        } else {
+            span.textContent = "";
         }
     }
 

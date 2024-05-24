@@ -71,8 +71,11 @@
                   id="first"
                   name="first"
                   minlength="2"
+                  data-validation
+                  data-error-message="Le prénom doit comporter au moins 2 caractères"
                   required
-                /><br>
+                />
+                <span></span>
               </div>
               <div
                 class="formData">
@@ -83,8 +86,11 @@
                   id="last"
                   name="last"
                   minlength="2"
+                  data-validation
+                  data-error-message="Le nom doit comporter au moins 2 caractères"
                   required
-                /><br>
+                />
+                <span></span>
               </div>
               <div
                 class="formData">
@@ -94,8 +100,11 @@
                   type="email"
                   id="email"
                   name="email"
+                  data-validation
+                  data-error-message="L'adresse email n'est pas valide"
                   required
-                /><br>
+                />
+                <span></span>
               </div>
               <div
                 class="formData">
@@ -105,13 +114,20 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
+                  data-validation
+                  data-error-message="Vous devez entrer votre date de naissance."
                   required
-                /><br>
+                />
+                <span></span>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required
+                data-validation
+                data-error-message="Vous devez saisir un nombre entre 0 et 99"
+                >
+                <span></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
